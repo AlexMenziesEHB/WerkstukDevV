@@ -1,74 +1,59 @@
-const express = require('express');
-const bodyParser = require("body-parser");
-const PORT = 3000;
-const fs = require("fs");
-
-let achievements = require("../src/data/achievements.json");
+const express = require("express");
+const PORT = 3000
 
 const app = express();
 
-const save = () => {
-  fs.writeFile(
-    "../src/data/achievements.json",
-    JSON.stringify(achievements, null, 2),
-    (error) => {
-      if (error) {
-        throw error;
-      }
-    }
-  );
-};
+app.use(express.json());
+
+const achievements = [
+  {
+    id: 1,
+    name: "Welcome",
+    points: "200",
+    description: "Succesfully signed up"
+  },
+  {
+    id: 2,
+    name: "First try",
+    points: "350",
+    description: "Succesfully tried your first workout"
+  },
+  {
+    id: 3,
+    name: "Refer a friend",
+    points: "100",
+    description: "Let a friend join you with your journey"
+  },
+];
 
 app.get("/", (req, res) => {
-  res.json(achievements);
+  return res.status(200).json({ data: achievements });
 });
 
-app.get("/:name", (req, res) => {
-  const findAchievement = achievements.find((name) => name.name === req.params.name);
-  if (!findAchievement) {
-    res.status(404).send("achievement with name was not found");
-  } else {
-    res.json(findAchievement);
-  }
-});
-
-app.post("/", bodyParser.json(), (req, res) => {
-  achievements.push(req.body);
-  save();
-  res.json({
-    status: "success",
-    achievementInfo: req.body,
+app.post("/send", (req, res) => {
+  achievements.push({
+    id: Math.floor(Math.random() * 100),
+    name: req.body.name,
+    points: req.body.points,
+    description: req.body.description,
   });
+  return res.status(201).json({ data: achievements });
 });
 
-app.put("/:name", bodyParser.json(), (req, res) => {
-  achievements = achievements.map((name) => {
-    if (name.name === req.params.name) {
-      return req.body;
-    } else {
-      return name;
-    }
-  });
-  save();
-
-  res.json({
-    status: "success",
-    achievementInfo: req.body,
-  });
-  //   }
+app.put("/update/:id", (req, res) => {
+  const obj = achievements.find((el) => el.id === Number(req.params.id));
+  obj.name = req.body.name;
+  return res.status(200).json({ data: achievements });
 });
 
-app.delete("/:name", (req, res) => {
-  achievements = achievements.filter((name) => name.name !== req.params.name);
-  save();
-  res.json({
-    status: "success",
-    removed: req.params.name,
-    newLength: achievements.length,
-  });
+app.delete("/destroy/:id", (req, res) => {
+  const i = achievements.findIndex((el) => el.id === Number(req.params.id));
+  achievements.splice(i, 1);
+  return res.status(200).json({ data: achievements });
 });
-
 
 app.listen(PORT, () => {
   console.log(`server listening at port ${PORT}`);
 });
+
+module.exports = app;
