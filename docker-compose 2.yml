@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  api:
+    build: ./api
+    environment:
+      - API_PORT
+    ports:
+      - "80:${API_PORT}"
+    volumes:
+    - ./api/src:/usr/app/src
+    depends_on:
+    - postgres
+
+  postgres:
+    image: postgres:latest
+    environment:
+    - POSTGRES_CONNECTION
+    - POSTGRES_USER
+    - POSTGRES_PASSWORD
+    - POSTGRES_DB
+    ports:
+    - 5432:5432
