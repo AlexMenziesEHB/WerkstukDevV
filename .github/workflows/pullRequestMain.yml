@@ -9,6 +9,7 @@ on:
     branches: [ main, develop ]
     
 env:
+  API_PORT: 3000
   POSTGRES_USER: root
   POSTGRES_PASSWORD: root
   POSTGRES_DB: achievements
