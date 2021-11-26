@@ -9,10 +9,16 @@ services:
     volumes:
     - ./api/src:/usr/app/src
     depends_on:
-    - postgres
+      postgres: 
+        condition: service_healthy
 
   postgres:
     image: postgres:latest
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     environment:
     - POSTGRES_CONNECTION
     - POSTGRES_USER
