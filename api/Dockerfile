@@ -1,13 +1,11 @@
-FROM node:latest
+FROM node:15.0.1-alpine3.10
 
-WORKDIR /urs/app/
+WORKDIR /urs/app/api
 
 COPY package*.json ./
 
 RUN npm i
 
 COPY ./ ./
-
-EXPOSE 3000
 
 CMD ["npm", "start"]
