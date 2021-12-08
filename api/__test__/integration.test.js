@@ -1,5 +1,5 @@
 const supertest = require("supertest")
-const app = require("../../src/server.js")
+const app = require("../src/server.js")
 const request = supertest(app)
 
 /*=================== Achievements Endpoints =====================*/
@@ -124,16 +124,4 @@ describe('CRUD endpoint genres tests', () => {
             } catch (error) {}
         })
     })
-
-    /*
-    describe("DELETE /genre", () => {
-        it("responds with 400 if no uuid is provided", async () => {
-          try {
-            const response = await request.delete("/genre").send({});
-            expect(response.status).toBe(400);
-            done();
-          } catch (error) {}
-        });
-      });*/
-
 });
