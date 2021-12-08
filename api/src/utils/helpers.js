@@ -1,4 +1,5 @@
 const {v1: uuidv1 } = require('uuid');
+const sortObject = require('sort-object-keys');
 
 const Helpers = {
   generateUUID: () => {
