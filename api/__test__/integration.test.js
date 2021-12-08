@@ -1,5 +1,5 @@
 const supertest = require("supertest")
-const app = require("../../src/server.js")
+const app = require("../src/server.js")
 const request = supertest(app)
 
 /*=================== Achievements Endpoints =====================*/
