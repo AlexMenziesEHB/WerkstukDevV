@@ -5,16 +5,6 @@ const request = supertest(app)
 /*=================== Achievements Endpoints =====================*/
 describe('CRUD endpoint achievements tests', () => {
     let uuid;
-    describe("GET /achievements", () => {
-        it("responds with 200 and returns all achievements", async () => {
-            try {
-                const response = await request.get("/achievements");
-                expect(response.status).toBe(200);
-                expect(typeof response.body).toBe("object");
-                done()
-            } catch (error) {}
-        });
-    });
 
     describe("Create an achievement", () => {
         it("responds with 200 if achievement is added to db", async () => {
@@ -32,6 +22,17 @@ describe('CRUD endpoint achievements tests', () => {
             } catch (error) {}
         });
     })
+
+    describe("GET /achievements", () => {
+        it("responds with 200 and returns all achievements", async () => {
+            try {
+                const response = await request.get("/achievements");
+                expect(response.status).toBe(200);
+                expect(typeof response.body).toBe("object");
+                done()
+            } catch (error) {}
+        });
+    });
 
     describe("Find an achievement", () => {
         it("finds the recently added achievement in db", async () => {
