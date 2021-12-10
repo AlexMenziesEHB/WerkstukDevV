@@ -14,13 +14,13 @@ services:
 
 
   db:
-    container_name: store   
+    container_name: store
     image: postgres
     restart: always
     environment:
-      POSTGRES_PASSWORD: example
-      POSTGRES_USER: example
-      POSTGRES_DB: test
-      POSTGRES_HOST_AUTH_METHOD: trust
+    - POSTGRES_CONNECTION
+    - POSTGRES_USER
+    - POSTGRES_PASSWORD
+    - POSTGRES_DB
     ports:
       - 5432:5432
