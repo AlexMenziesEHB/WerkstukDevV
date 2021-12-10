@@ -8,9 +8,9 @@ on:
 
 env: 
   API_PORT: 3000
-  POSTGRES_USER: root
-  POSTGRES_PASSWORD: root
-  POSTGRES_DATABASE: achievements
+  POSTGRES_USER: example
+  POSTGRES_PASSWORD: example
+  POSTGRES_DATABASE: test
   
 jobs:
 

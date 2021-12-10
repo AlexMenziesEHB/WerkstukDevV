@@ -10,9 +10,9 @@ on:
 
 env:
   API_PORT: 3000
-  POSTGRES_USER: root
-  POSTGRES_PASSWORD: root
-  POSTGRES_DB: achievements
+  POSTGRES_USER: example
+  POSTGRES_PASSWORD: example
+  POSTGRES_DB: test
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
