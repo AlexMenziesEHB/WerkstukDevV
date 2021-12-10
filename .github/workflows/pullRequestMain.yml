@@ -7,7 +7,7 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   pull_request:
     branches: [ main, develop ]
-    
+
 env:
   API_PORT: 3000
   POSTGRES_USER: root
@@ -42,6 +42,6 @@ jobs:
       - name: run tests
         run: |
          cd api
-         npm run test
+         npm run test-ci
 
 
