@@ -30,7 +30,6 @@ jobs:
       - name: build docker containers
         run: docker-compose build
         
-        
       - name: run docker containers
         run: docker-compose up -d
       
@@ -42,6 +41,6 @@ jobs:
       - name: run tests
         run: |
          cd api
-         npm run test-ci
+         npm run test
 
 
