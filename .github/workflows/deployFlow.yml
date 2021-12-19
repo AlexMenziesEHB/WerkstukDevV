@@ -10,7 +10,7 @@ env:
   API_PORT: 3000
   POSTGRES_USER: example
   POSTGRES_PASSWORD: example
-  POSTGRES_DATABASE: test
+  POSTGRES_DB: test
   
 jobs:
 
