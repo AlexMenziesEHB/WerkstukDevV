@@ -46,6 +46,7 @@ This Achievements API allows you to create and modify achivements and have a dee
     For more information regarding Jest, please refer to [their documentation](https://jestjs.io/docs/getting-started).
 5. To see the the data form the database, I recommend using TablePlus.
    You can get it [here](https://tableplus.com/).
+6. To contrubute to this project make sure to read 'CONTRIBUTING.md' located in the root folder
 
 ---
 # How it works
