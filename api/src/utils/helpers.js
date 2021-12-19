@@ -3,7 +3,7 @@ const sortObject = require('sort-object-keys');
 
 const Helpers = {
   generateUUID: () => {
-     const uuid = uuidv1();  
+     const uuid = uuidv1();
      return uuid;
   },
 

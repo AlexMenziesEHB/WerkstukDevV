@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const http = require('http')
 const Database = require("./utils/database.js");
 const Helpers = require('./utils/helpers.js')
+const SEED = require('./utils/seed.js');
 const {
     send
 } = require("process");
@@ -27,6 +28,7 @@ app.use(
         extended: true
     })
 )
+
 
 // Test Endpoint
 app.get("/test", (req, res) => {
@@ -187,5 +189,12 @@ app.delete("/genre", (req, res) => {
 })
 
 Database.initialiseTables();
+
+async function insertFirstData(){
+    await Database.initialiseTables();
+    await SEED.initialiseData();
+ };
+
+ insertFirstData()
 
 module.exports = app;
