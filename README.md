@@ -29,20 +29,22 @@ This Achievements API allows you to create and modify achivements and have a dee
 1. Clone this repository from github.
 2. Navigate to the root folder and change .env.template to .env
    - This is a simple text configuration file for controlling your applications environment constants.
-1. Navigate to the root folder and start up the Docker container.
+3. Navigate to the root folder and start up the Docker container.
     ```shell
     docker-compose build
     docker-compose up
+
     or
+
     docker-compose up --build
     ```
     For more information regarding Docker, please refer to [their documentation](https://docs.docker.com/).
-2. To run tests with Jest, navigate to the /api folder.
+4. To run tests with Jest, navigate to the /api folder.
     ```shell
     npm test
     ```
     For more information regarding Jest, please refer to [their documentation](https://jestjs.io/docs/getting-started).
-3. To see the the data form the database, I recommend using TablePlus.
+5. To see the the data form the database, I recommend using TablePlus.
    You can get it [here](https://tableplus.com/).
 
 ---
