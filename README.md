@@ -9,13 +9,14 @@
   - [Achievements Table](#achievements-table)
   - [Genre Table](#genre-table)
 - [Used dependencies](#used-dependencies)
+- [Licenses](#licenses)
 
 ---
 # Project information
 
 ---
 ## Author
-- [Alex Menzies](https://github.com/AlexMenziesEHB) 
+- [Alex Menzies](https://github.com/AlexMenziesEHB)
 
 ---
 ## About this project
@@ -26,17 +27,22 @@ This Achievements API allows you to create and modify achivements and have a dee
 # Getting started
 
 1. Clone this repository from github.
-2. Navigate to the root folder and start up the Docker container.
+2. Navigate to the root folder and change .env.template to .env
+   - This is a simple text configuration file for controlling your applications environment constants.
+1. Navigate to the root folder and start up the Docker container.
     ```shell
     docker-compose build
     docker-compose up
+    or
+    docker-compose up --build
     ```
     For more information regarding Docker, please refer to [their documentation](https://docs.docker.com/).
-3. To run tests with Jest, navigate to the /api folder.
+2. To run tests with Jest, navigate to the /api folder.
     ```shell
     npm test
     ```
-4. To see the the data form the database, I recommend using TablePlus. 
+    For more information regarding Jest, please refer to [their documentation](https://jestjs.io/docs/getting-started).
+3. To see the the data form the database, I recommend using TablePlus.
    You can get it [here](https://tableplus.com/).
 
 ---
@@ -56,7 +62,7 @@ You can modify this table by using the following endpoints:
 
 - `POST /achievement`
     - Posts an achievement to the database.
-    - Requires a body with the following properties: 
+    - Requires a body with the following properties:
         ```js
         {
             achievementName: String,
@@ -79,7 +85,7 @@ You can modify this table by using the following endpoints:
         ```
 - `DELETE /achievement/:uuid`
     - Deletes a specific achievement by uuid.
-    - Requires a body which includes the uuid as a string: 
+    - Requires a body which includes the uuid as a string:
         ```js
         {
             uuid: "ab382560-580f-11ec-b011-51878d80a9a9"
@@ -98,7 +104,7 @@ You can modify this table by using the following endpoints:
 
 - `POST /genre`
     - Posts an genre to the database.
-    - Requires a body with the following properties: 
+    - Requires a body with the following properties:
         ```js
         {
             genreName: String
@@ -118,7 +124,7 @@ You can modify this table by using the following endpoints:
         ```
 - `DELETE /genre/:uuid`
     - Deletes a specific genre by uuid.
-    - Requires a body which includes the uuid as a string: 
+    - Requires a body which includes the uuid as a string:
         ```js
         {
             uuid: "ab382560-580f-11ec-b011-51878d80a9a9"
@@ -141,5 +147,14 @@ You can modify this table by using the following endpoints:
 - sort-object-keys: "^1.1.3"
 - supertest: "^6.1.6"
 - uuid: "^8.3.2
+
+---
+
+# Licenses
+Licenses for this project can be found in the root folder of this project.
+Make sure to look at them and reas them before starting.
+- MIT License
+- Contributing
+- Code of Conduct
 
 ---
