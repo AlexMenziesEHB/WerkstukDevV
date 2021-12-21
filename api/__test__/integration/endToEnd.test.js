@@ -10,7 +10,7 @@ describe("E2E test", () => {
         try {
             const response = await request.post('/achievement')
                 .send({
-                    achievementName: "Equal Idiots"
+                    achievementName: "New Achievement Name"
                 })
             expect(response.status).toBe(200)
             achievementID = response.body.uuid
@@ -22,7 +22,7 @@ describe("E2E test", () => {
         try {
             const response = await request.get("/achievement/" + achievementID)
             expect(response.status).toBe(200)
-            expect(response.body.res[0].achievementName).toBe("Equal Idiots")
+            expect(response.body.res[0].achievementName).toBe("New Achievement Name")
             done()
         } catch (error) {}
     })
@@ -40,7 +40,7 @@ describe("E2E test", () => {
         try {
             const response = await request.patch("/achievement/" + achievementID)
                 .send({
-                    achievementName: "Amenra"
+                    achievementName: "Updated Achievement Name"
                 })
             expect(response.status).toBe(200)
             done()
@@ -51,7 +51,7 @@ describe("E2E test", () => {
         try {
             const response = await request.get("/achievement/" + achievementID)
             expect(response.status).toBe(200)
-            expect(response.body.res[0].achievementName).toBe("Amenra")
+            expect(response.body.res[0].achievementName).toBe("Updated Achievement Name")
             done()
         } catch (error) {}
     })
