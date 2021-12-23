@@ -4,12 +4,7 @@ const http = require('http')
 const Database = require("./utils/database.js");
 const Helpers = require('./utils/helpers.js')
 
-const pg = require('knex')({
-    client: 'pg',
-    version: '9.6',
-    searchPath: ['knex', 'public'],
-    connection: process.env.PG_CONNECTION_STRING ? process.env.PG_CONNECTION_STRING : 'postgres://example:example@localhost:5432/test'
-})
+const PG = require('../src/utils/knex.js')
 
 const app = express()
 http.Server(app)
@@ -39,7 +34,7 @@ app.get("/test", (req, res) => {
  * @returns: Get all achievements from database
  */
 app.get("/achievements", async (req, res) => {
-    const result = await pg
+    const result = await PG
         .select(["uuid", "achievementName", "description", "genreName", "created_at"])
         .from("achievementTable")
     res.status(200).send(result);
@@ -65,7 +60,7 @@ app.post("/achievement", (req, res) => {
             genreName: req.body.genreName,
             created_at: new Date()
         }, true)) {
-        pg.insert({
+        PG.insert({
                 uuid: uuid,
                 achievementName: req.body.achievementName,
                 description: req.body.description,
@@ -89,7 +84,7 @@ app.post("/achievement", (req, res) => {
  * @returns: Get One achievement from database by uuid
  */
 app.get('/achievement/:uuid', async (req, res) => {
-    const result = await pg
+    const result = await PG
         .select(["uuid", "achievementName", "description", "genreName", "created_at"])
         .from('achievementTable')
         .where({
@@ -106,7 +101,7 @@ app.get('/achievement/:uuid', async (req, res) => {
  * @returns: Returns status code 200
  */
 app.patch("/achievement/:uuid", (req, res) => {
-    pg('achievementTable')
+    PG('achievementTable')
         .where({
             uuid: req.params.uuid
         })
@@ -127,7 +122,7 @@ app.delete("/achievement", (req, res) => {
         }, {
             uuid: req.body.uuid
         }, false)) {
-        pg('achievementTable')
+        PG('achievementTable')
             .where({
                 uuid: req.body.uuid
             })
@@ -148,7 +143,7 @@ app.delete("/achievement", (req, res) => {
  * @returns: Get all genres from database
  */
 app.get('/genres', async (req, res) => {
-    const result = await pg
+    const result = await PG
         .select(['uuid', 'genreName', 'created_at'])
         .from('genreTable')
     res.status(200).send(result);
@@ -165,7 +160,7 @@ app.get("/genre/:uuid", async (req, res) => {
         }, {
             uuid: req.params.uuid
         }, false)) {
-        const result = await pg
+        const result = await PG
             .select(["uuid", "genreName", "created_at"])
             .from("genreTable")
             .where({
@@ -197,7 +192,7 @@ app.post("/genre", (req, res) => {
             genreName: req.body.genreName,
             created_at: new Date()
         }, true)) {
-        pg.insert({
+        PG.insert({
                 uuid: uuid,
                 genreName: req.body.genreName,
                 created_at: new Date(),
@@ -220,7 +215,7 @@ app.post("/genre", (req, res) => {
  * @returns: Returns status code 200
  */
 app.patch("/genre/:uuid", async (req, res) => {
-    pg('genreTable')
+    PG('genreTable')
         .where({
             uuid: req.params.uuid
         })
@@ -236,7 +231,7 @@ app.patch("/genre/:uuid", async (req, res) => {
  * @returns: status code 200
  */
 app.delete("/genre", (req, res) => {
-    pg('genreTable')
+    PG('genreTable')
         .where({
             uuid: req.body.uuid
         })
