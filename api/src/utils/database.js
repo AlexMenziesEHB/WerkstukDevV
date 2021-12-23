@@ -1,10 +1,4 @@
-const pg = require("knex")({
-    client: "pg",
-    version: "9.6",
-    searchPath: ["knex", "public"],
-    connection: process.env.PG_CONNECTION_STRING ?
-        process.env.PG_CONNECTION_STRING : "postgres://example:example@localhost:5432/test",
-});
+const PG = require("../utils/knex.js")
 
 const Database = {
     async initialiseTables() {
@@ -14,9 +8,9 @@ const Database = {
              * @param: none
              * @returns: created table achievements
              */
-            await pg.schema.hasTable('achievementTable').then(async (exists) => {
+            await PG.schema.hasTable('achievementTable').then(async (exists) => {
                 if (!exists) {
-                    await pg.schema
+                    await PG.schema
                         .createTable('achievementTable', (table) => {
                             table.increments();
                             table.uuid('uuid');
@@ -35,17 +29,17 @@ const Database = {
              * @param: none
              * @returns: created table genres
              */
-            await pg.schema.hasTable('genreTable').then(async (exists) => {
+            await PG.schema.hasTable('genreTable').then(async (exists) => {
                 if (!exists) {
-                    await pg.schema
+                    await PG.schema
                         .createTable('genreTable', (table) => {
                             table.increments();
                             table.uuid('uuid');
                             table.string('genreName');
                             table.timestamps(true, true);
                         })
-                        .then(() => pg('achievementTable').select('achievementTable.uuid', 'achievementTable.genreName'))
-                        .then((rows) => pg('genreTable').insert(rows))
+                        .then(() => PG('achievementTable').select('achievementTable.uuid', 'achievementTable.genreName'))
+                        .then((rows) => PG('genreTable').insert(rows))
                     /*.then(async () => {
                         console.log('created a genre table');
                     });*/
@@ -58,4 +52,4 @@ const Database = {
     }
 }
 
-module.exports = Database, pg;
+module.exports = Database, PG;
